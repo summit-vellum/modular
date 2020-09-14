@@ -160,12 +160,12 @@ trait Stub
     protected function routes()
     {
         $routeTemplate = str_replace(
-            ['{{moduleNameSingularLowerCase}}'],
-            [strtolower(Str::kebab($this->module))],
+            ['{{moduleNameSingularLowerCase}}', '{{moduleName}}'],
+            [strtolower(Str::kebab($this->module)), $this->module],
             $this->getStub('Route')
         );
 
-        $this->createStubToFile("routes/" . strtolower($this->module) . ".php", $routeTemplate);
+        $this->createStubToFile(strtolower($this->module) . ".php", $routeTemplate);
     }
 
     protected function controller()
@@ -195,7 +195,7 @@ trait Stub
             $this->getStub('Request')
         );
 
-        $this->createStubToFile("Requests/{$this->module}Request.php", $requestTemplate);
+        $this->createStubToFile("Http/Requests/{$this->module}Request.php", $requestTemplate);
     }
 
     protected function observer()
@@ -627,8 +627,8 @@ trait Stub
         $this->model();
         $this->config();
         $this->routes();
-        $this->policy();
-        $this->gate();
+        // $this->policy();
+        // $this->gate();
         // $this->presenter();
         $this->controller();
         $this->request();

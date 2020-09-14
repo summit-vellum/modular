@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Modules\{{moduleName}}\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class {{moduleName}}Request extends FormRequest
+{
+
+}
