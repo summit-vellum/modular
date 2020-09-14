@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Modules\{{moduleName}}\Observers; 
+
+use App\Modules\{{moduleName}}\Events\{{moduleName}}Creating;
+use App\Modules\{{moduleName}}\Events\{{moduleName}}Created;
+use App\Modules\{{moduleName}}\Events\{{moduleName}}Saving;
+use App\Modules\{{moduleName}}\Events\{{moduleName}}Saved;
+use App\Modules\{{moduleName}}\Events\{{moduleName}}Updating;
+use App\Modules\{{moduleName}}\Events\{{moduleName}}Updated;
+use App\Modules\{{moduleName}}\Models\{{moduleName}};
+
+class {{moduleName}}Observer
+{
+
+    public function creating({{moduleName}} ${{moduleNameSingularLowerCase}})
+    {
+        // creating logic... 
+        event(new {{moduleName}}Creating(${{moduleNameSingularLowerCase}}));
+    }
+
+    public function created({{moduleName}} ${{moduleNameSingularLowerCase}})
+    {
+        // created logic...
+        event(new {{moduleName}}Created(${{moduleNameSingularLowerCase}}));
+    }
+
+    public function saving({{moduleName}} ${{moduleNameSingularLowerCase}})
+    {
+        // saving logic...
+        event(new {{moduleName}}Saving(${{moduleNameSingularLowerCase}}));
+    }
+
+    public function saved({{moduleName}} ${{moduleNameSingularLowerCase}})
+    {
+        // saved logic...
+        event(new {{moduleName}}Saved(${{moduleNameSingularLowerCase}}));
+    }
+
+    public function updating({{moduleName}} ${{moduleNameSingularLowerCase}})
+    {
+        // updating logic...
+        event(new {{moduleName}}Updating(${{moduleNameSingularLowerCase}}));
+    }
+
+    public function updated({{moduleName}} ${{moduleNameSingularLowerCase}})
+    {
+        // updated logic...
+        event(new {{moduleName}}Updated(${{moduleNameSingularLowerCase}}));
+    }
+
+}

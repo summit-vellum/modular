@@ -1,0 +1,28 @@
+<?php 
+
+namespace App\Modules\{{moduleName}}\Events; 
+
+
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use App\Modules\{{moduleName}}\Models\{{moduleName}};
+
+class {{className}}
+{
+    // use Dispatchable, InteractsWithSockets, 
+    use SerializesModels;
+ 
+    public $data;
+
+    /**
+     * Create a new event instance.
+     *
+     * @param  \App\Modules\{{moduleName}}\Models\{{moduleName}}  $data
+     * @return void
+     */
+    public function __construct({{moduleName}} $data) 
+    {
+        $this->data = $data;  
+    }
+}

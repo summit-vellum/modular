@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Core\Console\Commands;
+namespace App\Modules\Core\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -35,6 +35,7 @@ class ModuleGenerator extends Command
 
         $this->disk = Storage::disk('modules');
         $this->directories = ['image'];
+        // find a way to check directories or list of modules
     }
 
     /**

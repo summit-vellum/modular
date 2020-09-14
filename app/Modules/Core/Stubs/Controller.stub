@@ -4,11 +4,12 @@ namespace App\Modules\{{moduleName}}\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Modules\{{moduleName}}\Models\{{moduleName}};
 
 class {{moduleName}}Controller extends Controller
 {
 
-    public function __construct(Resource $resource)
+    public function __construct()
     {
         //
     }
@@ -20,7 +21,7 @@ class {{moduleName}}Controller extends Controller
      */
     public function index()
     {
-        //
+        return view('{{moduleNameSingularLowerCase}}.index');
     }
 
     /**

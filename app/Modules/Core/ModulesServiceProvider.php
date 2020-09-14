@@ -26,19 +26,8 @@ class ModulesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadModule();
-        // For each of the registered modules, include their routes and Views
-        $modules = config("module");
-
-        foreach ($modules as $module) {
-            if (file_exists(base_path('app/Modules/' . $module . '/routes.php'))) {
-                include base_path('app/Modules/' . $module . '/routes.php');
-            }
-
-            if (is_dir(base_path('app/Modules/' . $module . '/Views'))) {
-                $this->loadViewsFrom(base_path('app/Modules/' . $module . '/Views'), strtolower($module));
-            }
-        }
+        $this->loadCommands();
+        $this->loadSettings();
     }
 
     public function register()
@@ -46,10 +35,15 @@ class ModulesServiceProvider extends ServiceProvider
         //
     }
 
-    public function loadModule()
+    public function loadSettings()
+    {
+        //
+    }
+
+    public function loadCommands()
     {
         $this->commands([
-            \App\Modules\Core\Console\Commands\ModuleGenerator::class,
+            \App\Modules\Core\Commands\ModuleGenerator::class,
         ]);
     }
 }
