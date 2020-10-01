@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */ 
-        
+        Summitooh\Core\OutdoorCoreServiceProvider::class,
         /*
          * Application Service Providers...
          */

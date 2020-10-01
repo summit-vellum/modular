@@ -34,7 +34,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Summitooh\\Core\\": "modules/summitooh/core/src"
         },
         "classmap": [
             "database/seeds",

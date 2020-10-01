@@ -67,7 +67,7 @@ return [
 
         'modules' => [
             'driver' => 'local',
-            'root' => app_path('Modules'),
+            'root' => base_path('modules/summitooh'),
         ],
 
     ],
