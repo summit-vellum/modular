@@ -11,4 +11,4 @@
 |
 */ 
 
-Route::resource('{{moduleNameSingularLowerCase}}', 'Summitooh\{{moduleName}}\Http\Controllers\{{moduleName}}Controller');
+Route::resource('{{moduleNameSingularLowerCase}}', 'Summitooh\{{moduleName}}\App\Http\Controllers\{{moduleName}}Controller');

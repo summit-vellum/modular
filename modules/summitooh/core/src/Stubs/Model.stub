@@ -1,6 +1,6 @@
 <?php
 
-namespace Summitooh\{{moduleName}}\Models;
+namespace Summitooh\{{moduleName}}\App;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -29,18 +29,18 @@ trait Stub
     {
         $this->buildModuleDirectories();
         $this->composer();
-        $this->view();
-        $this->model();
-        $this->config();
-        $this->routes();
+        $this->serviceProvider();
+        $this->command();
         $this->controller();
         $this->request();
-        $this->observer();
-        $this->command();
         $this->event();
+        $this->observer();
+        $this->model();
         $this->jobs();
+        $this->config();
         $this->migrate();
-        $this->serviceProvider();
+        $this->routes();
+        $this->view();
     }
 
     protected function buildModuleDirectories()
@@ -54,19 +54,18 @@ trait Stub
 
         $source =  strtolower($module) . '/src/';
         $this->disk->makeDirectory($source);
-        $this->disk->makeDirectory($source . 'Models');
-        $this->disk->makeDirectory($source . 'Routes');
-        $this->disk->makeDirectory($source . 'Commands');
-        $this->disk->makeDirectory($source . 'Jobs');
-        $this->disk->makeDirectory($source . 'Events');
-        $this->disk->makeDirectory($source . 'Config');
-        $this->disk->makeDirectory($source . 'Observers');
-        $this->disk->makeDirectory($source . 'Views');
-        $this->disk->makeDirectory($source . 'Http');
-        $this->disk->makeDirectory($source . 'Http/Controllers');
-        $this->disk->makeDirectory($source . 'Http/Requests');
-        $this->disk->makeDirectory($source . 'Database/Migrations');
-        $this->disk->makeDirectory($source . 'Database/Seeds');
+        $this->disk->makeDirectory($source . 'app/Commands');
+        $this->disk->makeDirectory($source . 'app/Jobs');
+        $this->disk->makeDirectory($source . 'app/Events');
+        $this->disk->makeDirectory($source . 'app/Observers');
+        $this->disk->makeDirectory($source . 'app/Http');
+        $this->disk->makeDirectory($source . 'app/Http/Controllers');
+        $this->disk->makeDirectory($source . 'app/Http/Requests');
+        $this->disk->makeDirectory($source . 'config');
+        $this->disk->makeDirectory($source . 'database/migrations');
+        $this->disk->makeDirectory($source . 'database/seeds');
+        $this->disk->makeDirectory($source . 'routes');
+        $this->disk->makeDirectory($source . 'views');
 
         $this->info("{$this->module} module directory created successfuly.");
     }
@@ -75,10 +74,10 @@ trait Stub
     {
         $vendorPath = '';
         if (!file_exists('core')) {
-            $vendorPath = 'app/modules/';
+            $vendorPath = 'modules/summitooh/';
         }
 
-        return File::get(base_path($vendorPath . "core/stubs/$type.stub"));
+        return File::get(base_path($vendorPath . "core/src/Stubs/$type.stub"));
     }
 
     protected function composer()
@@ -106,7 +105,7 @@ trait Stub
             $this->getStub('Composer')
         );
 
-        $this->createStubToFile("{$this->module}/composer.json", $composerTemplate, true);
+        $this->createStubToFile("../composer.json", $composerTemplate, true);
     }
 
     protected function model()
@@ -123,7 +122,7 @@ trait Stub
             $this->getStub('Model')
         );
 
-        $this->createStubToFile("Models/{$this->module}.php", $modelTemplate);
+        $this->createStubToFile("app/{$this->module}.php", $modelTemplate);
     }
 
     protected function config()
@@ -134,7 +133,7 @@ trait Stub
             $this->getStub('Config')
         );
 
-        $this->createStubToFile("Config/" . strtolower($this->module) . ".php", $moduleTemplate);
+        $this->createStubToFile("config/" . strtolower($this->module) . ".php", $moduleTemplate);
     }
 
 
@@ -146,7 +145,7 @@ trait Stub
             $this->getStub('Route')
         );
 
-        $this->createStubToFile("Routes/web.php", $routeTemplate);
+        $this->createStubToFile("routes/web.php", $routeTemplate);
     }
 
     protected function controller()
@@ -165,7 +164,7 @@ trait Stub
             $this->getStub('Controller')
         );
 
-        $this->createStubToFile("Http/Controllers/{$this->module}Controller.php", $controllerTemplate);
+        $this->createStubToFile("app/Http/Controllers/{$this->module}Controller.php", $controllerTemplate);
     }
 
     protected function request()
@@ -176,7 +175,7 @@ trait Stub
             $this->getStub('Request')
         );
 
-        $this->createStubToFile("Http/Requests/{$this->module}Request.php", $requestTemplate);
+        $this->createStubToFile("app/Http/Requests/{$this->module}Request.php", $requestTemplate);
     }
 
     protected function observer()
@@ -193,7 +192,7 @@ trait Stub
             $this->getStub('Observer')
         );
 
-        $this->createStubToFile("Observers/{$this->module}Observer.php", $observerTemplate);
+        $this->createStubToFile("app/Observers/{$this->module}Observer.php", $observerTemplate);
     }
 
     protected function serviceProvider()
@@ -228,14 +227,14 @@ trait Stub
             $this->getStub('Seed')
         );
 
-        $this->createStubToFile("Database/Seeds/{$this->module}TableSeeder.php", $seederTemplate);
+        $this->createStubToFile("database/seeds/{$this->module}TableSeeder.php", $seederTemplate);
     }
 
     protected function migrate()
     {
 
         $module = strtolower($this->module);
-        $migrationPath = 'app/Modules/' . $module . '/Database/Migrations';
+        $migrationPath = 'modules/summitooh/' . $module . '/src/database/migrations';
         $modulePlural = Str::plural($module);
 
         $this->info('Creating a migration scripts.');
@@ -262,7 +261,7 @@ trait Stub
                 ],
                 $this->getStub('Event')
             );
-            $this->createStubToFile("Events/{$this->module}{$events}.php", $eventTemplate);
+            $this->createStubToFile("app/Events/{$this->module}{$events}.php", $eventTemplate);
         }
     }
 
@@ -300,7 +299,7 @@ trait Stub
             $this->getStub('EventSubscriber')
         );
 
-        $this->createStubToFile("Listeners/{$this->module}EventSubscriber.php", $eventSubscriberTemplate);
+        $this->createStubToFile("app/Listeners/{$this->module}EventSubscriber.php", $eventSubscriberTemplate);
     }
 
     protected function command()
@@ -317,7 +316,7 @@ trait Stub
             $this->getStub('Command')
         );
 
-        $this->createStubToFile("Commands/{$this->module}Command.php", $commandTemplate);
+        $this->createStubToFile("app/Commands/{$this->module}Command.php", $commandTemplate);
     }
 
     protected function jobs()
@@ -335,7 +334,7 @@ trait Stub
             $this->getStub('Job')
         );
 
-        $this->createStubToFile("Jobs/{$this->module}Job.php", $jobTemplate);
+        $this->createStubToFile("app/Jobs/{$this->module}Job.php", $jobTemplate);
     }
 
     protected function view()
@@ -343,7 +342,7 @@ trait Stub
 
         $viewTemplate = 'Welcome to ' . $this->module;
 
-        $this->createStubToFile("Views/index.blade.php", $viewTemplate);
+        $this->createStubToFile("views/index.blade.php", $viewTemplate);
     }
 
     protected function createStubToFile($file, $template, $mainDirectory = false)

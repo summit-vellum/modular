@@ -1,6 +1,6 @@
 <?php
 
-namespace Summitooh\{{moduleName}}\Http\Requests;
+namespace Summitooh\{{moduleName}}\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

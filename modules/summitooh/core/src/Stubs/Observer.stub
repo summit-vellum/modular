@@ -1,14 +1,14 @@
 <?php
 
-namespace Summitooh\{{moduleName}}\Observers; 
+namespace Summitooh\{{moduleName}}\App\Observers; 
 
-use Summitooh\{{moduleName}}\Events\{{moduleName}}Creating;
-use Summitooh\{{moduleName}}\Events\{{moduleName}}Created;
-use Summitooh\{{moduleName}}\Events\{{moduleName}}Saving;
-use Summitooh\{{moduleName}}\Events\{{moduleName}}Saved;
-use Summitooh\{{moduleName}}\Events\{{moduleName}}Updating;
-use Summitooh\{{moduleName}}\Events\{{moduleName}}Updated;
-use Summitooh\{{moduleName}}\Models\{{moduleName}};
+use Summitooh\{{moduleName}}\App\Events\{{moduleName}}Creating;
+use Summitooh\{{moduleName}}\App\Events\{{moduleName}}Created;
+use Summitooh\{{moduleName}}\App\Events\{{moduleName}}Saving;
+use Summitooh\{{moduleName}}\App\Events\{{moduleName}}Saved;
+use Summitooh\{{moduleName}}\App\Events\{{moduleName}}Updating;
+use Summitooh\{{moduleName}}\App\Events\{{moduleName}}Updated;
+use Summitooh\{{moduleName}}\App\{{moduleName}};
 
 class {{moduleName}}Observer
 {
